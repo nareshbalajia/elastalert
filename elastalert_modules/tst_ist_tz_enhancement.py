@@ -12,7 +12,9 @@ class ConvertTzInfo(BaseEnhancement):
     # The match is passed to the process function where it can be modified in any way
     # ElastAlert will do this for each enhancement linked to a rule
     def process(self, match):
-        utc_ts = timestamp
+        
+        elastalert_logger.info("Received UTC Time %s" % (match['@timestamp']))
+        utc_ts = match['@timestamp']
         if not isinstance(utc_ts, datetime):
             utc_ts = ts_to_dt(utc_ts)
 
