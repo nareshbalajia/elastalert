@@ -16,7 +16,7 @@ class ConvertTzInfo(BaseEnhancement):
         if not isinstance(match['@timestamp'], datetime):
             utc_ts = ts_to_dt(match['@timestamp'])
 
-        utc_ts = pretty_ts(match['@timestamp'])
+        utc_ts = match['@timestamp']
         taipei_tz = timezone('Asia/Taipei')
         india_tz = timezone('Asia/Kolkata')
 
