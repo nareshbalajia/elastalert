@@ -2,7 +2,7 @@ from datetime import datetime
 from pytz import timezone
 
 from elastalert.enhancements import BaseEnhancement
-from elastalert.util import ts_to_dt
+from elastalert.util import ts_to_dt, pretty_ts
 
 """
 This Class will convert the incoming Timezone object of UTC offset to Taiwan/India Standard Timezone
