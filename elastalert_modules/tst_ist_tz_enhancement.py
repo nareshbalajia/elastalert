@@ -2,7 +2,7 @@ from datetime import datetime
 from pytz import timezone
 
 from elastalert.enhancements import BaseEnhancement
-from elastalert.util import ts_to_dt, pretty_ts
+from elastalert.util import ts_to_dt, pretty_ts, elastalert_logger
 
 """
 This Class will convert the incoming Timezone object of UTC offset to Taiwan/India Standard Timezone
@@ -12,11 +12,10 @@ class ConvertTzInfo(BaseEnhancement):
     # The match is passed to the process function where it can be modified in any way
     # ElastAlert will do this for each enhancement linked to a rule
     def process(self, match):
+        utc_ts = timestamp
+        if not isinstance(utc_ts, datetime):
+            utc_ts = ts_to_dt(utc_ts)
 
-        if not isinstance(match['@timestamp'], datetime):
-            utc_ts = ts_to_dt(match['@timestamp'])
-
-        utc_ts = match['@timestamp']
         taipei_tz = timezone('Asia/Taipei')
         india_tz = timezone('Asia/Kolkata')
 
