@@ -13,7 +13,7 @@ class ConvertTzInfo(BaseEnhancement):
     # ElastAlert will do this for each enhancement linked to a rule
     def process(self, match):
 
-        if not isinstance(match['@timestamp'], datetime.datetime):
+        if not isinstance(match['@timestamp'], datetime):
             utc_ts = ts_to_dt(match['@timestamp'])
 
         utc_ts = pretty_ts(match['@timestamp'])
